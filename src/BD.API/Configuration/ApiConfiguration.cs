@@ -43,6 +43,7 @@ namespace BD.API.Configuration
                         builder
                             .WithOrigins("http://espacogospelebenezer.tk", "https://espacogospelebenezer.tk")
                             .SetIsOriginAllowedToAllowWildcardSubdomains()
+                            .AllowAnyMethod()
                             .AllowAnyHeader());
             });
 
