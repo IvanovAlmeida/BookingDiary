@@ -1,0 +1,51 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Permissões do Grupo</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <button [routerLink]="['/dashboard/grupos-de-usuario/']" routerLinkActive="router-link-active" type="button"
+            class="btn btn-sm btn-outline-info">
+            Voltar
+        </button>
+    </div>
+</div>
+<div class="flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Listagem</h5>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 5%;">#</th>
+                            <th scope="col" class="text-center" style="width: 65%;">Nome</th>
+                            <th scope="col" class="text-center" style="width: 15%;">Tipo</th>
+                            <th scope="col" class="text-center" style="width: 15%;">Valor</th>
+                            <th scope="col" class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let permission of permissions" [ngClass]="{'bg-white' : permission.hasPermission, 'bg-secondary text-white' : !permission.hasPermission}">
+                            <th scope="row" class="align-middle">{{ permission.id }}</th>
+                            <td class="align-middle text-center">
+                                {{ permission.name }}
+                            </td>
+                            <td class="align-middle text-center">
+                                {{ permission.type }}
+                            </td>
+                            <td class="align-middle text-center">
+                                {{ permission.value }}
+                            </td>
+                            <td class="align-middle">
+                                <button class="btn btn-sm btn-danger" *ngIf="permission.hasPermission" (click)="canRemovePermission() ? removePermission(permission) : false" [ngClass]="{'disabled' : !canRemovePermission()}" placement="left" ngbTooltip="Tooltip on top">
+                                    <fa-icon [icon]="['fas', 'minus']"></fa-icon>
+                                </button>
+                                <button class="btn btn-sm btn-success" *ngIf="!permission.hasPermission" (click)="canAddPermission() ? addPermission(permission) : false" [ngClass]="{'disabled' : !canAddPermission()}" placement="left" ngbTooltip="Tooltip on top">
+                                    <fa-icon  [icon]="['fas', 'plus']"></fa-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

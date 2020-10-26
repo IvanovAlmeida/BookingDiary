@@ -1,0 +1,57 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Grupos de Usuários</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <button [routerLink]="['/dashboard/grupos-de-usuario/cadastrar']" routerLinkActive="router-link-active" type="button"
+            class="btn btn-sm btn-outline-success">
+            <fa-icon [icon]="['fas', 'plus']"></fa-icon>
+            Novo Grupo
+        </button>
+    </div>
+</div>
+
+<div class="flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Listagem</h5>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 5%;">#</th>
+                            <th scope="col" class="text-center" style="width: 85%;">Nome</th>
+                            <th scope="col" class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let role of roles" [ngClass]="{'bg-danger text-white' : role.disabledAt != null}">
+                            <th scope="row" class="align-middle">{{ role.id }}</th>
+                            <!-- <td class="align-middle text-center">
+                                <img [src]="curso.imagem" class="mr-2" style="width: 60px">
+                            </td> -->
+                            <td class="align-middle text-center">
+                                {{ role.name }}
+                            </td>
+                            <td class="align-middle">
+                                <div class="btn-group" role="group">
+                                    <button class="btn btn-sm btn-info"
+                                        [routerLink]="['/dashboard/grupos-de-usuario/permissoes', role.id]"
+                                        routerLinkActive="router-link-active">
+                                        <fa-icon [icon]="['fas', 'cogs']"></fa-icon>
+                                    </button>
+                                    <button class="btn btn-sm btn-warning"
+                                        [routerLink]="['/dashboard/grupos-de-usuario/editar', role.id]"
+                                        routerLinkActive="router-link-active">
+                                        <fa-icon [icon]="['fas', 'edit']"></fa-icon>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" (click)="deleteRole(role.id)">
+                                        <fa-icon [icon]="['fas', 'trash']"></fa-icon>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

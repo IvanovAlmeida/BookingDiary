@@ -1,0 +1,65 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Editar Item - <small>{{ item.name }}</small></h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <button [routerLink]="['/dashboard/itens/']" routerLinkActive="router-link-active" type="button"
+            class="btn btn-sm btn-outline-info">
+            Voltar
+        </button>
+    </div>
+</div>
+<div class="justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+    <div class="card">
+        <div class="card-body" (submit)="saveItem()">
+            <form [formGroup]="itemForm" >
+                <div class="alert alert-danger" *ngIf="errors.length > 0">
+                    <h3 id="msgRetorno">Opa! Alguma coisa não deu certo:</h3>
+                    <ul>
+                        <li *ngFor="let error of errors">{{ error }}</li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12">
+                        <label for="name">Nome</label>
+                        <input type="text" class="form-control" placeholder=""
+                            aria-label="Nome" id="name" formControlName="name" 
+                            [ngClass]="{'is-invalid': displayMessage.name }"/>
+                        <span class="text-danger" *ngIf="displayMessage.name">
+                            <p [innerHTML]="displayMessage.name"></p>
+                        </span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="minPrice">Preço</label>
+                        <input type="text" class="form-control" placeholder="R$ 1,50"
+                                aria-label="Preço" id="price" formControlName="price"
+                                [ngClass]="{'is-invalid': displayMessage.price }" />
+                        <span class="text-danger" *ngIf="displayMessage.price">
+                            <p [innerHTML]="displayMessage.price"></p>
+                        </span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="quantity">Quantidade</label>
+                        <input type="text" class="form-control" placeholder="Quantidade disponível"
+                                aria-label="Quantidade" id="quantity" formControlName="quantity" 
+                                [ngClass]="{'is-invalid': displayMessage.quantity }" />
+                        <span class="text-danger" *ngIf="displayMessage.quantity">
+                            <p [innerHTML]="displayMessage.quantity"></p>
+                        </span>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label for="description">Descrição</label>
+                        <textarea type="text" class="form-control" placeholder=""
+                                [ngClass]="{'is-invalid': displayMessage.description }"
+                                aria-label="Descrição" id="description" formControlName="description"></textarea>
+                        <span class="text-danger" *ngIf="displayMessage.description">
+                            <p [innerHTML]="displayMessage.description"></p>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" id="cadastroProduto" [disabled]="!itemForm.valid" value="Salvar" class="btn btn-primary">&nbsp;
+                    <a class="btn btn-info" [routerLink]="['/dashboard/itens']">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+{
+    "items": [
+        {
+            "id": 1,
+            "name": "Mesas",
+            "price": 2.50,
+            "quantity": 40
+        },
+        {
+            "id": 2,
+            "name": "Cadeiras",
+            "price": 3.50,
+            "quantity": 80
+        }
+    ],
+    "reserves": [
+        
+    ]
+}

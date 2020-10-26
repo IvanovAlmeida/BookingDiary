@@ -1,0 +1,43 @@
+<nav [ngbCollapse]="isCollapsed" id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-bookingdiary sidebar collapse">
+
+    <div class="sidebar-sticky pt-0">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/dashboard']" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active" (click)="closeSidenav()">
+                    <fa-icon [icon]="['fas', 'tachometer-alt']"></fa-icon>
+                    Início <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/dashboard/reservas']" routerLinkActive="active" (click)="closeSidenav()">
+                    <fa-icon [icon]="['fas', 'book']"></fa-icon>
+                    Reservas
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/dashboard/itens']" routerLinkActive="active" (click)="closeSidenav()">
+                    <fa-icon [icon]="['fas', 'sitemap']"></fa-icon>
+                    Itens
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/dashboard/usuarios']" routerLinkActive="active" (click)="closeSidenav()">
+                    <fa-icon [icon]="['fas', 'users']"></fa-icon>
+                    Usuários
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/dashboard/grupos-de-usuario']" routerLinkActive="active" (click)="closeSidenav()">
+                    <fa-icon [icon]="['fas', 'users-cog']"></fa-icon>
+                    Grupo de Usuários
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/dashboard/configuracoes']" routerLinkActive="active" (click)="closeSidenav()">
+                    <fa-icon [icon]="['fas', 'cogs']"></fa-icon>
+                    Configurações
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,98 @@
+.card-container {
+    perspective: 700px;
+}
+
+.card-flip, .card-container {
+    transform-style: preserve-3d;
+    transition: all .8s ease;
+}
+
+.card-flip div {
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+.back {
+    transform: rotateY(-180deg);
+}
+
+.card-container .card-flip.flip {
+    transform: rotateY(180deg);
+}
+
+.card-flip {
+    display: grid; grid-template: 1fr / 1fr;
+    grid-template-areas: "frontAndBack";
+    transform-style: preserve-3d;
+    transition: all .8s ease;
+}
+
+.front {
+    grid-area: frontAndBack;
+}
+
+.back {
+    grid-area: frontAndBack;
+    transform: rotateY(-180deg);
+}
+
+.card-container {
+    display: grid;
+    perspective: 700px;
+}
+
+.form-signin,
+.form-recovery {
+    width: 100%;
+    max-width: 380px;
+    padding: 15px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.form-signin input[type="email"],
+.form-recovery input[type="email"] {
+    margin-bottom: -1px;
+    margin-top: 10px;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+}
+
+.form-signin .form-control,
+.form-recovery .form-control {
+    position: relative;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-signin a,
+.form-recovery a {    
+    width: 120px;
+}
+
+.form-signin a:hover,
+.form-recovery a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.form-signin .checkbox {
+    font-weight: 400;
+}
+
+div.bxErros #msgRetornoLogin {
+    font-size: .95rem;
+}
+
+div.bxErros ul {
+    list-style: none;
+    padding: 0;
+}
+
+div.bxErros ul li {
+    text-align: center;
+}

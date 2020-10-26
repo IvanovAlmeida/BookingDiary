@@ -1,0 +1,73 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Nova Reserva</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <button [routerLink]="['/dashboard/reservas/']" routerLinkActive="router-link-active"  type="button" class="btn btn-sm btn-outline-info">
+            Voltar
+        </button>
+    </div>
+</div>
+<div class="justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+    <div class="card">
+        <div class="card-body" (submit)="saveReserve()">
+            <form [formGroup]="reserveForm" >
+                <div class="alert alert-danger" *ngIf="errors.length > 0">
+                    <h3 id="msgRetorno">Opa! Alguma coisa não deu certo:</h3>
+                    <ul>
+                        <li *ngFor="let error of errors">{{ error }}</li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label for="dateStart">Data de Entrada</label>
+                        <input class="form-control" placeholder="" type="datetime-local"
+                            aria-label="Data de Entrada" id="dateStart" formControlName="dateStart" 
+                            [ngClass]="{'is-invalid': displayMessage.dateStart }"/>
+                        <span class="text-danger" *ngIf="displayMessage.dateStart">
+                            <p [innerHTML]="displayMessage.dateStart"></p>
+                        </span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="dateEnd">Data de Saida</label>
+                        <input class="form-control" placeholder="" type="datetime-local"
+                                aria-label="Preço" id="dateEnd" formControlName="dateEnd"
+                                [ngClass]="{'is-invalid': displayMessage.dateEnd }" />
+                        <span class="text-danger" *ngIf="displayMessage.dateEnd">
+                            <p [innerHTML]="displayMessage.dateEnd"></p>
+                        </span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="price">Preço</label>
+                        <input type="text" class="form-control" placeholder="" [textMask]="{mask: MASKS.currency.textMask}"
+                                aria-label="Preço" id="price" formControlName="price" 
+                                [ngClass]="{'is-invalid': displayMessage.price }" />
+                        <span class="text-danger" *ngIf="displayMessage.price">
+                            <p [innerHTML]="displayMessage.price"></p>
+                        </span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="entry">Entrada</label>
+                        <input type="text" class="form-control" placeholder="" [textMask]="{mask: MASKS.currency.textMask}"
+                                aria-label="Entrada" id="entry" formControlName="entry" 
+                                [ngClass]="{'is-invalid': displayMessage.entry }" />
+                        <span class="text-danger" *ngIf="displayMessage.entry">
+                            <p [innerHTML]="displayMessage.entry"></p>
+                        </span>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label for="description">Descrição</label>
+                        <textarea type="text" class="form-control" placeholder=""
+                                [ngClass]="{'is-invalid': displayMessage.description }"
+                                aria-label="Descrição" id="description" formControlName="description"></textarea>
+                        <span class="text-danger" *ngIf="displayMessage.description">
+                            <p [innerHTML]="displayMessage.description"></p>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" [disabled]="!reserveForm.valid" value="Cadastrar" class="btn btn-primary">&nbsp;
+                    <a class="btn btn-info" [routerLink]="['/dashboard/itens']">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

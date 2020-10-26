@@ -1,0 +1,67 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#ffffff" type="ball-atom" [zIndex]="99" [fullScreen]="false"><p style="color: white" > Carregando ... </p></ngx-spinner>
+<div class="container mt-2">
+    <div class="row mt-5">
+        <div class="offset-sm-2 col-sm-8 offset-md-3 col-md-6 offset-lg-4 col-lg-4 card-container">
+            <div class="card-flip" [ngClass]="{'flip': formRecoveryPassword}">
+                <div class="card px-3 front">
+                    <form class="form-signin" [formGroup]="loginForm" (submit)="login()">
+                        <h1 class="h3 mt-2 mb-4 font-weight-normal">Faça login</h1>
+
+                        <div class="alert alert-danger bxErros" *ngIf="errorsLogin.length > 0">
+                            <h5 id="msgRetornoLogin">Opa! Alguma coisa não deu certo:</h5>
+                            <ul>
+                                <li *ngFor="let error of errorsLogin">{{ error }}</li>
+                            </ul>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="sr-only">Endereço de email</label>
+                            <input type="email" class="form-control" id="email" formControlName="email"
+                                placeholder="Seu email" required="" autofocus=""
+                                [ngClass]="{'is-invalid': displayMessageLogin.email }">
+                            <span class="text-danger" *ngIf="displayMessageLogin.email">
+                                <p [innerHTML]="displayMessageLogin.email"></p>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="sr-only">Senha</label>
+                            <input type="password" class="form-control" id="password" formControlName="password"
+                                placeholder="Senha" required="" [ngClass]="{'is-invalid': displayMessageLogin.password }">
+                            <span class="text-danger" *ngIf="displayMessageLogin.password">
+                                <p [innerHTML]="displayMessageLogin.password"></p>
+                            </span>
+                        </div>
+                        <div class="checkbox mb-3">
+                            <label>
+                                <input type="checkbox" value="remember-me"> Lembrar de mim
+                            </label>
+                        </div>
+                        <button class="btn btn-md btn-success btn-block mb-4" type="submit"
+                            [disabled]="!loginForm.valid">Login</button>
+                        <a (click)="flip()">Recuperar Senha</a>
+                        <p class="mt-5 mb-1 text-muted">© 2020</p>
+                    </form>
+                </div>
+                <div class=" card back px-3">
+                    <form class="form-recovery" [formGroup]="recoveryForm">
+                        <h1 class="h3 mt-3 mb-5 font-weight-normal">Recuperar Senha</h1>
+
+                        <div class="form-group">
+                            <label for="emailRecovery" class="sr-only">Endereço de email</label>
+                            <input type="emailRecovery" class="form-control" id="emailRecovery"
+                                formControlName="emailRecovery" placeholder="Seu email" required="" autofocus=""
+                                [ngClass]="{'is-invalid': displayMessageRecovery.emailRecovery }">
+                            <span class="text-danger" *ngIf="displayMessageRecovery.emailRecovery">
+                                <p [innerHTML]="displayMessageRecovery.emailRecovery"></p>
+                            </span>
+                        </div>
+
+                        <button class="btn btn-md btn-success btn-block mb-4" type="submit" [disabled]="!recoveryForm.valid">Recuperar</button>
+                        <a (click)="flip()">Entrar</a>
+                        <p class="mt-5 mb-1 text-muted">© 2020</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

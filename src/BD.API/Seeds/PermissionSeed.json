@@ -1,0 +1,177 @@
+[
+  {
+    "name": "Listar Usuários",
+    "type": "User",
+    "value": "All"
+  },
+  {
+    "name": "Visualizar Usuário",
+    "type": "User",
+    "value": "Get"
+  },
+  {
+    "name": "Adicionar Usuário",
+    "type": "User",
+    "value": "Add"
+  },
+  {
+    "name": "Alterar Usuário",
+    "type": "User",
+    "value": "Edit"
+  },
+  {
+    "name": "Desativar Usuário",
+    "type": "User",
+    "value": "Disable"
+  },
+  {
+    "name": "Reativar Usuário",
+    "type": "User",
+    "value": "Reactive"
+  },
+  {
+    "name": "Trocar Senha",
+    "type": "User",
+    "value": "ChangePassword"
+  },
+  {
+    "name": "Trocar Senha de outro Usuário",
+    "type": "User",
+    "value": "ChangeUserPassword"
+  },
+  {
+    "name": "Atualizar Grupos de um Usuário",
+    "type": "User",
+    "value": "UpdateRoles"
+  },
+  {
+    "name": "Listar Funções",
+    "type": "Role",
+    "value": "All"
+  },
+  {
+    "name": "Visualizar Função",
+    "type": "Role",
+    "value": "Get"
+  },
+  {
+    "name": "Adicionar Função",
+    "type": "Role",
+    "value": "Add"
+  },
+  {
+    "name": "Alterar Função",
+    "type": "Role",
+    "value": "Edit"
+  },
+  {
+    "name": "Apagar Função",
+    "type": "Role",
+    "value": "Delete"
+  },
+  {
+    "name": "Adicionar Permissão a Função",
+    "type": "Role",
+    "value": "AddClaim"
+  },
+  {
+    "name": "Remover Permissão da Função",
+    "type": "Role",
+    "value": "DeleteClaim"
+  },
+  {
+    "name": "Listar Reservas",
+    "type": "Reserve",
+    "value": "All"
+  },
+  {
+    "name": "Visualizar Reserva",
+    "type": "Reserve",
+    "value": "Get"
+  },
+  {
+    "name": "Adicionar Reserva",
+    "type": "Reserve",
+    "value": "Add"
+  },
+  {
+    "name": "Alterar Reserva",
+    "type": "Reserve",
+    "value": "Edit"
+  },
+  {
+    "name": "Desativar Reserva",
+    "type": "Reserve",
+    "value": "Disable"
+  },
+  {
+    "name": "Reativar Reserva",
+    "type": "Reserve",
+    "value": "Reactive"
+  },
+  {
+    "name": "Listar Itens",
+    "type": "Item",
+    "value": "All"
+  },
+  {
+    "name": "Visualizar Item",
+    "type": "Item",
+    "value": "Get"
+  },
+  {
+    "name": "Adicionar Item",
+    "type": "Item",
+    "value": "Add"
+  },
+  {
+    "name": "Alterar Item",
+    "type": "Item",
+    "value": "Edit"
+  },
+  {
+    "name": "Desativar Item",
+    "type": "Item",
+    "value": "Disable"
+  },
+  {
+    "name": "Reativar Item",
+    "type": "Item",
+    "value": "Reactive"
+  },
+  {
+    "name": "Listar Permissões",
+    "type": "Permission",
+    "value": "All"
+  },
+  {
+    "name": "Listar Fluxo de Caixa",
+    "type": "CashFlow",
+    "value": "All"
+  },
+  {
+    "name": "Visualizar Fluxo de Caixa",
+    "type": "CashFlow",
+    "value": "Get"
+  },
+  {
+    "name": "Adicionar Fluxo de Caixa",
+    "type": "CashFlow",
+    "value": "Add"
+  },
+  {
+    "name": "Alterar Fluxo de Caixa",
+    "type": "CashFlow",
+    "value": "Edit"
+  },
+  {
+    "name": "Desativar Fluxo de Caixa",
+    "type": "CashFlow",
+    "value": "Disable"
+  },
+  {
+    "name": "Reativar Fluxo de Caixa",
+    "type": "CashFlow",
+    "value": "Reactive"
+  }
+]

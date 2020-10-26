@@ -1,0 +1,10 @@
+<app-navbar-dashboard></app-navbar-dashboard>
+<div class="container-fluid" style="height: 100%;">
+    <div class="row" style="height: 100%;">
+        <app-sidenav-dashboard></app-sidenav-dashboard>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" [ngStyle]="{'min-height.px': mainHeight}">
+            <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#ffffff" type="ball-atom" [zIndex]="99" [fullScreen]="false"><p style="color: white" > Carregando ... </p></ngx-spinner>
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+</div>
