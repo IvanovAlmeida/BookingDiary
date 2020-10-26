@@ -41,8 +41,7 @@ namespace BD.API.Configuration
                 options.AddPolicy("Production",
                     builder =>
                         builder
-                            .WithMethods("GET")
-                            .WithOrigins("http://api.io")
+                            .WithOrigins("http://espacogospelebenezer.tk", "https://espacogospelebenezer.tk")
                             .SetIsOriginAllowedToAllowWildcardSubdomains()
                             .AllowAnyHeader());
             });

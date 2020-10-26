@@ -1,4 +1,4 @@
 export const environment = {
   production: true,  
-  apiUrlv1: 'http://localhost:3000/'
+  apiUrlv1: 'http://api.espacogospelebenezer.tk/'
 };
