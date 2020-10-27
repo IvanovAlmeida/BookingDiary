@@ -62,4 +62,10 @@ export class UserService extends BaseService {
       .patch(this.UrlServiceV1 + `users/${id}`, {}, super.ObterAuthHeaderJson())
       .pipe(map(super.extractData), catchError(super.serviceError));
   }
+
+  public changeUserPassword(id: number, password: string) : Observable<any> {
+    return this.http
+      .put(this.UrlServiceV1 + `users/change-user-password/${id}`, {password: password}, super.ObterAuthHeaderJson())
+      .pipe(map(super.extractData), catchError(super.serviceError));
+  }
 }

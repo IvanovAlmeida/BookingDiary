@@ -3,9 +3,13 @@ export class CurrencyUtils {
     public static StringParaDecimal(input): any {
         if (input === null) return 0;
 
+        input = input.replace(/[R$]/g, '');
         input = input.replace(/\./g, '');
         input = input.replace(/,/g, '.');
-        return parseFloat(input);
+
+        let ret = parseFloat(input);
+
+        return isNaN(ret) ? null : ret;
     }
 
     public static DecimalParaString(input): any {

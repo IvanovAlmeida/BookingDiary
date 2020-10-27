@@ -35,10 +35,16 @@
                                 {{ permission.value }}
                             </td>
                             <td class="align-middle">
-                                <button class="btn btn-sm btn-danger" *ngIf="permission.hasPermission" (click)="canRemovePermission() ? removePermission(permission) : false" [ngClass]="{'disabled' : !canRemovePermission()}" placement="left" ngbTooltip="Tooltip on top">
+                                <button class="btn btn-sm btn-danger" *ngIf="permission.hasPermission" 
+                                        (click)="canRemovePermission() ? removePermission(permission) : false" 
+                                        [ngClass]="{'disabled' : !canRemovePermission()}"
+                                        placement="left" ngbTooltip="Tooltip on top">
                                     <fa-icon [icon]="['fas', 'minus']"></fa-icon>
                                 </button>
-                                <button class="btn btn-sm btn-success" *ngIf="!permission.hasPermission" (click)="canAddPermission() ? addPermission(permission) : false" [ngClass]="{'disabled' : !canAddPermission()}" placement="left" ngbTooltip="Tooltip on top">
+                                <button class="btn btn-sm btn-success" *ngIf="!permission.hasPermission" 
+                                        (click)="canAddPermission() ? addPermission(permission) : false" 
+                                        [ngClass]="{'disabled' : !canAddPermission()}"
+                                        placement="left" ngbTooltip="Tooltip on top">
                                     <fa-icon  [icon]="['fas', 'plus']"></fa-icon>
                                 </button>
                             </td>

@@ -12,6 +12,8 @@ namespace BD.API.ViewModels.User
         public string Name { get; set; }
         public string Email { get; set; }
 
+        public DateTime? DisabledAt { get; set; }
+
         public IEnumerable<RoleViewModel> Roles { get; set; }
     }
 }

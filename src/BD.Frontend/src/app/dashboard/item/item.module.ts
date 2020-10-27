@@ -14,6 +14,9 @@ import { faTrash, faEdit, faPlug } from '@fortawesome/free-solid-svg-icons';
 import { ItemService } from 'src/app/core/services/item.service';
 import { ItemResolve } from 'src/app/core/resolvers/item.resolve';
 import { RouterGuard } from 'src/app/core/guards/router.guard';
+import { NgBrazil } from 'ng-brazil';
+import { TextMaskModule } from 'angular2-text-mask';
+import { PipesModule } from 'src/app/core/modules/pipes/pipes.module';
 
 @NgModule({
   declarations: [ItemComponent, ListComponent, EditComponent, AddComponent],
@@ -23,7 +26,10 @@ import { RouterGuard } from 'src/app/core/guards/router.guard';
     FontAwesomeModule,
     CustomFormsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgBrazil,
+    TextMaskModule,
+    PipesModule
   ],
   providers: [
     ItemService,

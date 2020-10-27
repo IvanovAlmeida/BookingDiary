@@ -10,11 +10,18 @@ import { ToastrService } from 'ngx-toastr';
 
 import { BaseComponent } from 'src/app/core/base-components/base.component';
 
+import { utilsBr } from 'js-brasil';
+import { CurrencyUtils } from 'src/app/core/utils/currency-utils';
+
+const MASKS = utilsBr.MASKS;
+
 @Component({
   selector: 'app-item-list',
   templateUrl: './list.component.html'
 })
 export class ListComponent extends BaseComponent implements OnInit {
+
+  public MASKS = MASKS;
 
   showSearchForm : boolean = false;
   items : Item[] = [];
@@ -55,6 +62,9 @@ export class ListComponent extends BaseComponent implements OnInit {
     this.spinner.show();
     
     this.itemSearch = Object.assign({}, this.itemSearch, this.searchForm.value);   
+
+    this.itemSearch.minPrice = CurrencyUtils.StringParaDecimal(this.itemSearch.minPrice);
+    this.itemSearch.maxPrice = CurrencyUtils.StringParaDecimal(this.itemSearch.maxPrice);
     this.itemService.listItems(this.itemSearch).subscribe(
       r => {
         this.items = r;

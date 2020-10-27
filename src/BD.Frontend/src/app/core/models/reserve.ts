@@ -4,6 +4,7 @@ export class Reserve {
     id: number;
     price:number;
     entry: number;
+    description: string;
 
     items: Item[];
 

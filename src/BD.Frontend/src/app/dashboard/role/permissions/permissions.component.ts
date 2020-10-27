@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { BaseComponent } from 'src/app/core/base-components/base.component';
 import { AuthClaim } from 'src/app/core/models/auth';
 import { Claim } from 'src/app/core/models/claim';
 import { Permission } from 'src/app/core/models/permission';
@@ -13,16 +14,16 @@ import { RoleService } from 'src/app/core/services/role.service';
   templateUrl: './permissions.component.html',
   styleUrls: ['./permissions.component.css']
 })
-export class PermissionsComponent implements OnInit {
+export class PermissionsComponent extends BaseComponent implements OnInit {
 
   public role: Role;  
   public permissions: Permission[] = [];
 
-  constructor(
-    private route: ActivatedRoute,
-    private roleService: RoleService,
-    private spinner: NgxSpinnerService,
-    private toastr: ToastrService) {
+  constructor(private route: ActivatedRoute,
+              private roleService: RoleService,
+              private spinner: NgxSpinnerService,
+              private toastr: ToastrService) {
+    super();
     this.role = this.route.snapshot.data['role'];
     this.permissions = this.route.snapshot.data['permissions'];
 
@@ -49,7 +50,6 @@ export class PermissionsComponent implements OnInit {
   }
 
   private hasPermission(permission: Permission) : Claim {
-
     let claim = this.role.claims.find(claim => claim.claimType === permission.type && claim.claimValue === permission.value);
 
     if(typeof claim != undefined)
@@ -120,11 +120,11 @@ export class PermissionsComponent implements OnInit {
   }
 
   canAddPermission() : boolean {
-    let claim = this.hasPermission({ type: 'Role', value: 'AddClaim' } as Permission);
+    let claim = this.havePermission({ type: 'Role', value: 'AddClaim' } as AuthClaim);
     return claim != undefined;
   }
   canRemovePermission() : boolean {
-    let claim = this.hasPermission({ type: 'Role', value: 'RemoveClaim' } as Permission);
+    let claim = this.havePermission({ type: 'Role', value: 'RemoveClaim' } as AuthClaim);
     return claim != undefined;
   }
 }

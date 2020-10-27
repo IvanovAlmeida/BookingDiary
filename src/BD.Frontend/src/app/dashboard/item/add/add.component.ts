@@ -6,9 +6,13 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ItemService } from 'src/app/core/services/item.service';
 import { CustomValidators } from 'ngx-custom-validators';
 
-import { CurrencyUtils } from 'src/app/core/utils/currency-utils';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+
+import { utilsBr } from 'js-brasil';
+import { CurrencyUtils } from 'src/app/core/utils/currency-utils';
+
+const MASKS = utilsBr.MASKS;
 
 @Component({
   selector: 'app-item-add',
@@ -16,6 +20,8 @@ import { Router } from '@angular/router';
 })
 export class AddComponent extends ItemBaseComponent implements OnInit, AfterViewInit {
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
+
+  public MASKS = MASKS;
 
   constructor(private fb: FormBuilder, 
               private itemService: ItemService, 
@@ -28,7 +34,7 @@ export class AddComponent extends ItemBaseComponent implements OnInit, AfterView
   ngOnInit(): void {
     this.itemForm = this.fb.group({
       name: ['', [ Validators.required, Validators.minLength(2), Validators.maxLength(180) ]],
-      price: ['', [ Validators.required, Validators.min(0.01), CustomValidators.number ]],
+      price: ['', [ Validators.required, Validators.min(0.01) ]],
       quantity: ['', [ Validators.required, Validators.min(0.01), CustomValidators.number ]],
       description: ['',[ Validators.minLength(2), Validators.maxLength(1000) ]]
     });
@@ -42,7 +48,7 @@ export class AddComponent extends ItemBaseComponent implements OnInit, AfterView
     if(this.itemForm.dirty && this.itemForm.valid) {
       this.item = Object.assign({}, this.item, this.itemForm.value);
 
-      //this.item.price = CurrencyUtils.StringParaDecimal(this.item.price);
+      this.item.price = CurrencyUtils.StringParaDecimal(this.item.price);
       this.spinner.show();
       this.itemService.saveItem(this.item).subscribe(
         success => { this.processSuccess(success); },

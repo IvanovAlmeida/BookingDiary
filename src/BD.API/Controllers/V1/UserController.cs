@@ -151,6 +151,7 @@ namespace BD.API.Controllers.V1
                 {
                     NotifyError(error.Description);
                 }
+                return CustomResponse(ModelState);
             }
 
             result = await _userManager.RemoveFromRolesAsync(user, rolesToRemove);
@@ -183,16 +184,59 @@ namespace BD.API.Controllers.V1
 
         [HttpPut("change-password")]
         [ClaimsAuthorize("User", "ChangePassword")]
-        public void ChangePassword(ChangePasswordViewModel changePasswordViewModel)
+        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel passwordViewModel)
         {
+            if (!ModelState.IsValid)
+                return CustomResponse(ModelState);
 
+            var user = await _userManager.FindByIdAsync(this.UserId.ToString());
+            if (user == null)
+                return NotFound();
+
+            var result = await _userManager.ChangePasswordAsync(user, passwordViewModel.OldPassword, passwordViewModel.Password);
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    NotifyError(error.Description);
+                }
+            }
+
+            return CustomResponse(ModelState);
         }
 
         [HttpPut("change-user-password/{id:int}")]
         [ClaimsAuthorize("User", "ChangeUserPassword")]
-        public void ResetPassword(int id)
+        public async Task<ActionResult> ChangeUserPassword(int id, ChangeUserPasswordViewModel passwordViewModel)
         {
+            var user = await _userManager.FindByIdAsync(id.ToString());
 
+            if (!ModelState.IsValid)
+                return CustomResponse(ModelState);
+
+            if (user == null)
+                return NotFound();
+
+            var result = await _userManager.RemovePasswordAsync(user);
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    NotifyError(error.Description);
+                }
+                return CustomResponse(ModelState);
+            }
+
+            result = await _userManager.AddPasswordAsync(user, passwordViewModel.Password);
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    NotifyError(error.Description);
+                }
+            }
+
+            return CustomResponse(ModelState);
         }
 
         private async Task<LoginResponseViewModel> GerarJwt(string email)

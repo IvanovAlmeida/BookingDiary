@@ -16,6 +16,8 @@ import { EditComponent } from './edit/edit.component';
 import { RouterGuard } from 'src/app/core/guards/router.guard';
 import { TextMaskModule } from 'angular2-text-mask';
 import { NgBrazil } from 'ng-brazil';
+import { PipesModule } from 'src/app/core/modules/pipes/pipes.module';
+import { ReserveResolve } from 'src/app/core/resolvers/reserve.resolve';
 
 @NgModule({
   declarations: [ReserveComponent, ListComponent, AddComponent, EditComponent],
@@ -28,11 +30,13 @@ import { NgBrazil } from 'ng-brazil';
     NgSelectModule,
     ReactiveFormsModule,
     TextMaskModule,
-    NgBrazil
+    NgBrazil,
+    PipesModule
   ],
   providers: [
     ReserveService,
-    RouterGuard
+    RouterGuard,
+    ReserveResolve
   ]
 })
 export class ReserveModule { 

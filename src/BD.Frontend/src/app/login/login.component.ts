@@ -94,8 +94,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     let toast = this.toastr.success('Login realizado com sucesso!', 'Sucesso!', { timeOut: 1500 });
     if(toast) {
       toast.onHidden.subscribe(() => {
-
-        this.returnUrl
+        this.returnUrl && this.returnUrl.length > 1
         ? this.router.navigate([this.returnUrl])
         : this.router.navigate(['/dashboard']);
       });

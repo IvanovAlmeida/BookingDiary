@@ -9,6 +9,11 @@ import { ToastrService } from 'ngx-toastr';
 import { ItemService } from 'src/app/core/services/item.service';
 import { CustomValidators } from 'ngx-custom-validators';
 
+import { utilsBr } from 'js-brasil';
+import { CurrencyUtils } from 'src/app/core/utils/currency-utils';
+
+const MASKS = utilsBr.MASKS;
+
 @Component({
   selector: 'app-item-edit',
   templateUrl: './edit.component.html'
@@ -16,6 +21,7 @@ import { CustomValidators } from 'ngx-custom-validators';
 export class EditComponent extends ItemBaseComponent implements OnInit, AfterViewInit {
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
+  public MASKS = MASKS;
   public item: Item;
 
   constructor(private fb: FormBuilder, 
@@ -32,7 +38,7 @@ export class EditComponent extends ItemBaseComponent implements OnInit, AfterVie
   ngOnInit(): void {
     this.itemForm = this.fb.group({
       name: ['', [ Validators.required, Validators.minLength(2), Validators.maxLength(180) ]],
-      price: ['', [ Validators.required, Validators.min(0.01), CustomValidators.number ]],
+      price: ['', [ Validators.required, Validators.min(0.01) ]],
       quantity: ['', [ Validators.required, Validators.min(0.01), CustomValidators.number ]],
       description: ['',[ Validators.minLength(2), Validators.maxLength(1000) ]]
     });
@@ -40,7 +46,7 @@ export class EditComponent extends ItemBaseComponent implements OnInit, AfterVie
     this.itemForm.patchValue({
       id: this.item.id,
       name: this.item.name,
-      price: this.item.price,
+      price: CurrencyUtils.DecimalParaString(this.item.price),
       quantity: this.item.quantity,
       description: this.item.description
     });
@@ -55,6 +61,8 @@ export class EditComponent extends ItemBaseComponent implements OnInit, AfterVie
   saveItem() {
     if(this.itemForm.dirty && this.itemForm.valid) {
       this.item = Object.assign({}, this.item, this.itemForm.value);
+      this.item.price = CurrencyUtils.StringParaDecimal(this.item.price);
+
       this.spinner.show();
       this.itemService.updateItem(this.item).subscribe(
         success => { this.proccessSuccess(success); },

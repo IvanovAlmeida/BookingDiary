@@ -68,6 +68,9 @@
                             </td>
                             <td class="align-middle">
                                 <div class="btn-group" role="group">
+                                    <button class="btn btn-sm btn-primary" (click)="openModalPassword(user)">
+                                        <fa-icon [icon]="['fas', 'key']"></fa-icon>
+                                    </button>
                                     <button class="btn btn-sm btn-warning"
                                         [routerLink]="['/dashboard/usuarios/editar', user.id]"
                                         routerLinkActive="router-link-active">

@@ -35,12 +35,12 @@
                     </div>
                     <div class="form-group col-sm-6">
                         <label for="minPrice">Preço apartir</label>
-                        <input type="text" class="form-control" placeholder=""
+                        <input type="text" class="form-control" placeholder="R$ 1,25" [textMask]="{mask: MASKS.currency.textMask}"
                                 aria-label="Preço apartir" id="minPrice" formControlName="minPrice" />
                     </div>
                     <div class="form-group col-sm-6">
                         <label for="maxPrice">Preço até</label>
-                        <input type="text" class="form-control" placeholder=""
+                        <input type="text" class="form-control" placeholder="R$ 1,25" [textMask]="{mask: MASKS.currency.textMask}"
                                 aria-label="Preço até" id="maxPrice" formControlName="maxPrice" />
                     </div>
                     <div class="form-group col-sm-6">
@@ -82,14 +82,11 @@
                     <tbody>
                         <tr *ngFor="let item of items" [ngClass]="{'bg-danger text-white' : item.disabledAt != null}">
                             <th scope="row" class="align-middle">{{ item.id }}</th>
-                            <!-- <td class="align-middle text-center">
-                                <img [src]="curso.imagem" class="mr-2" style="width: 60px">
-                            </td> -->
                             <td class="align-middle text-center">
                                 {{ item.name }}
                             </td>
                             <td class="align-middle text-center">
-                                {{ item.price }}
+                                {{ item.price | money }}
                             </td>
                             <td class="align-middle text-center">
                                 {{ item.quantity }}

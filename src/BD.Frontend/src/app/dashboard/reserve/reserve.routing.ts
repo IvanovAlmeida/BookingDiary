@@ -6,6 +6,7 @@ import { ListComponent } from './list/list.component';
 import { EditComponent } from './edit/edit.component';
 import { AddComponent } from './add/add.component';
 import { RouterGuard } from 'src/app/core/guards/router.guard';
+import { ReserveResolve } from 'src/app/core/resolvers/reserve.resolve';
 
 const dashboardReserveRouting: Routes = [
     {
@@ -25,7 +26,10 @@ const dashboardReserveRouting: Routes = [
             {
                 path: 'editar/:id',  component: EditComponent,
                 canActivate: [RouterGuard],
-                data: [{ claim: {type: 'Reserve', value: 'Edit'}}]
+                data: [{ claim: {type: 'Reserve', value: 'Edit'}}],
+                resolve: {
+                    reserve: ReserveResolve
+                }
             },
         ]
     }

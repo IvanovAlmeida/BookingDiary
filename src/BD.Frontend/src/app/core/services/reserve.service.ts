@@ -24,8 +24,32 @@ export class ReserveService extends BaseService {
     });
   }
 
+  public getReserve(id: number) : Observable<Reserve> {
+    return this.http
+                .get<Reserve>(this.UrlServiceV1 + `reserves/${id}`, super.ObterAuthHeaderJson())
+                .pipe(map(super.extractData), catchError(super.serviceError));
+  }
+
   public addReserve(reserve: Reserve) : Observable<Reserve> {
     return this.http.post(this.UrlServiceV1 + 'reserves', reserve, super.ObterAuthHeaderJson())
                     .pipe(map(super.extractData), catchError(super.serviceError));
+  }
+
+  public updateReserve(reserve: Reserve) : Observable<Reserve> {
+    return this.http
+              .put(this.UrlServiceV1 + `reserves/${reserve.id}`, reserve, super.ObterAuthHeaderJson())
+              .pipe(map(super.extractData), catchError(super.serviceError));
+  }
+
+  public disableReserve(id: number) : Observable<Reserve> {
+    return this.http
+            .delete(this.UrlServiceV1 + `reserves/${id}`, super.ObterAuthHeaderJson())
+            .pipe(map(super.extractData), catchError(super.serviceError));
+  }
+
+  public enableReserve(id: number) : Observable<Reserve> {
+    return this.http
+            .patch(this.UrlServiceV1 + `reserves/${id}`, {}, super.ObterAuthHeaderJson())
+            .pipe(map(super.extractData), catchError(super.serviceError));
   }
 }

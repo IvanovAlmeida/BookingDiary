@@ -18,6 +18,8 @@ import { SidenavStore } from './dashboard/navigation/sidenav/sidenav.store';
 import { ErrorInterceptor } from 'src/app/core/services/error-interceptor.service';
 import { LoginComponent } from './login/login.component';
 
+import { MoneyPipe } from 'src/app/core/pipes/money.pipe';
+
 export const httpInterceptors = [
   { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
 ];

@@ -13,6 +13,7 @@ import { utilsBr } from 'js-brasil';
 
 import * as moment from 'moment';
 import 'moment/locale/pt-br';
+import { CurrencyUtils } from 'src/app/core/utils/currency-utils';
 
 const MASKS = utilsBr.MASKS;
 
@@ -66,13 +67,9 @@ export class AddComponent extends ReserveBaseComponent implements OnInit, AfterV
     if(this.reserveForm.dirty && this.reserveForm.valid) {
       this.reserve = Object.assign({}, this.reserve, this.reserveForm.value);
 
-      console.log(this.reserve);
+      this.reserve.price = CurrencyUtils.StringParaDecimal(this.reserve.price);
+      this.reserve.entry = CurrencyUtils.StringParaDecimal(this.reserve.entry);
 
-      this.reserve.price = parseFloat(this.reserve.price.toString().replace('R$', '').replace(',', '.'));
-      this.reserve.entry = parseFloat(this.reserve.entry.toString().replace('R$', '').replace(',', '.'));
-
-      console.log(this.reserve);
-      
       this.spinner.show();
       this.reserveService.addReserve(this.reserve).subscribe(
         success => { this.processSuccess(success); },

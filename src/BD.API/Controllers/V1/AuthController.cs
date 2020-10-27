@@ -44,9 +44,16 @@ namespace BD.API.Controllers.V1
             if (!ModelState.IsValid) return CustomResponse(ModelState);
 
             var result = await _signInManager.PasswordSignInAsync(loginUser.Email, loginUser.Password, false, true);
-
+                        
             if (result.Succeeded)
-                return CustomResponse(await GerarJwt(loginUser.Email));
+            {
+                var user = await _userManager.FindByEmailAsync(loginUser.Email);                
+                if(user.DisabledAt == null)
+                    return CustomResponse(await GerarJwt(user));
+
+                NotifyError("Usuário ou Senha incorretos");
+                return CustomResponse(loginUser);
+            }
 
             if(result.IsLockedOut)
             {
@@ -58,9 +65,8 @@ namespace BD.API.Controllers.V1
             return CustomResponse(loginUser);
         }
 
-        private async Task<LoginResponseViewModel> GerarJwt(string email)
+        private async Task<LoginResponseViewModel> GerarJwt(AppUser user)
         {
-            var user = await _userManager.FindByEmailAsync(email);
             var userRoles = await _userManager.GetRolesAsync(user);
 
             var claims = new List<Claim>();

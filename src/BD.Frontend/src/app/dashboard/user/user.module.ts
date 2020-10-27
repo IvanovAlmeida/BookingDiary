@@ -15,9 +15,10 @@ import { UserResolve } from 'src/app/core/resolvers/user.resolve';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { RolesResolve } from 'src/app/core/resolvers/roles.resolve';
 import { RouterGuard } from 'src/app/core/guards/router.guard';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
-  declarations: [UserComponent, ListComponent, AddComponent, EditComponent],
+  declarations: [UserComponent, ListComponent, AddComponent, EditComponent, ChangePasswordComponent],
   imports: [
     CommonModule, 
     UserRoutingModule,

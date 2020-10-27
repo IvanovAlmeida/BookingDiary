@@ -21,32 +21,32 @@
                 <div class="form-row">
                     <div class="form-group col-sm-3">
                         <label for="minPrice">Preço apartir</label>                        
-                        <input type="text" class="form-control" placeholder=""
+                        <input type="text" class="form-control" placeholder="R$ 150" [textMask]="{mask: MASKS.currency.textMask}"
                                 aria-label="Preço apartir" id="minPrice" formControlName="minPrice" />
                     </div>
                     <div class="form-group col-sm-3">
                         <label for="maxPrice">Preço até</label>                        
-                        <input type="text" class="form-control" placeholder=""
+                        <input type="text" class="form-control" placeholder="R$ 150" [textMask]="{mask: MASKS.currency.textMask}"
                                 aria-label="Preço até" id="maxPrice" formControlName="maxPrice" />
                     </div>
                     <div class="form-group col-sm-3">
                         <label for="minEntry">Entrada apartir</label>
-                        <input type="text" class="form-control" placeholder=""
+                        <input type="text" class="form-control" placeholder="R$ 150" [textMask]="{mask: MASKS.currency.textMask}"
                                 aria-label="Entrada apartir" id="minEntry" formControlName="minEntry" />
                     </div>
                     <div class="form-group col-sm-3">
                         <label for="maxEntry">Entrada até</label>
-                        <input type="text" class="form-control" placeholder=""
+                        <input type="text" class="form-control" placeholder="R$ 150" [textMask]="{mask: MASKS.currency.textMask}"
                                 aria-label="Entrada até" id="maxEntry" formControlName="maxEntry" />
                     </div>
                     <div class="form-group col-sm-4">
                         <label for="minDateStart">Data Entrada apartir</label>
-                        <input type="text" class="form-control" placeholder="dd-mm-yyyy" 
+                        <input type="date" class="form-control" placeholder="dd-mm-yyyy" 
                                 aria-label="Data Entrada apartir" id="minDateStart" formControlName="minDateStart" />
                     </div>
                     <div class="form-group col-sm-4">
                         <label for="maxDateStart">Data Entrada até</label>
-                        <input type="text" class="form-control" placeholder="" placeholder="dd-mm-yyyy" ngbDatepicker
+                        <input type="date" class="form-control" placeholder="" placeholder="dd-mm-yyyy" ngbDatepicker
                                 aria-label="Data Entrada até" id="maxDateStart" formControlName="maxDateStart" />
                     </div>
                     <div class="form-group col-sm-4">
@@ -78,7 +78,7 @@
                             <th scope="col" class="text-center" style="width: 15%;">Preço</th>
                             <th scope="col" class="text-center" style="width: 15%;">Entrada</th>
                             <th scope="col" class="text-center" style="width: 15%;">Início</th>
-                            <th scope="col" class="text-center" style="width: 15%;">Saida</th>
+                            <th scope="col" class="text-center" style="width: 15%;">Saída</th>
                             <th scope="col" class="text-center">Ações</th>
                         </tr>
                     </thead>
@@ -89,10 +89,10 @@
                                 {{ reserve.description }}
                             </td>
                             <td class="align-middle text-center">
-                                {{ reserve.price | currencyBrazil }}
+                                {{ reserve.price | money }}
                             </td>
                             <td class="align-middle text-center">
-                                {{ reserve.entry | currencyBrazil }}
+                                {{ reserve.entry | money }}
                             </td>
                             <td class="align-middle text-center">
                                 {{ reserve.dateStart | date:'dd/MM/yyyy HH:mm' }}
